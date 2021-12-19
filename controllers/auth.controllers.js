@@ -104,10 +104,18 @@ try {
 }
 } 
 
-const renovarToken = (req,res = response)=>{
+const renovarToken = async(req,res = response)=>{
+
+ const { uid,name } = req;
+
+ //Generar JWT
+ const token = await generarJWT( uid, name );
+
   return res.json({
     ok:true,
-    msg:'Renew'
+    uid,
+    name,
+    token
   })
 } 
 
